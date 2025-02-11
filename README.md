@@ -1,11 +1,10 @@
 # Next.js Dark Mode Template
 
-A modern Next.js 14 template with built-in dark mode support, using next-themes and Tailwind CSS.
+A modern Next.js 14 to-do list app, using next-themes and Tailwind CSS.
 
 ## Features
-
-- 🌓 Dark mode with system preference detection
 - 🎨 Tailwind CSS for styling
+- 🤖 Gemini API-calling
 - ⚡ Next.js 14 with App Router
 - 📝 TypeScript support
 - 🔤 Geist font integration
