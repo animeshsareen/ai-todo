@@ -21,19 +21,16 @@ interface MainPaneProps {
   onNotesChange: (notes: string) => void
 }
 
+const SUBTASK_PROMPT = "Break this task down into 5-7 specific, actionable steps that will help accomplish the goal. Focus on unconventional wisdom and avoid common advice."
+
 export default function MainPane({ selectedTask, onNotesChange }: MainPaneProps) {
   const [isPreview, setIsPreview] = useState(false)
   const [isGenerating, setIsGenerating] = useState(false)
-  const [showPromptDialog, setShowPromptDialog] = useState(false)
-  const [customPrompt, setCustomPrompt] = useState(
-    "Break this task down into 3-5 specific, actionable steps that will help accomplish the goal."
-  )
 
   const handleGenerateSubTasks = async (prompt: string) => {
     if (!selectedTask) return
     
     setIsGenerating(true)
-    setShowPromptDialog(false)
     
     try {
       const subTaskTitles = await generateSubTasks(selectedTask.title, prompt)
@@ -73,7 +70,7 @@ export default function MainPane({ selectedTask, onNotesChange }: MainPaneProps)
           <div className="flex gap-2">
             <Button
               variant="outline"
-              onClick={() => setShowPromptDialog(true)}
+              onClick={() => handleGenerateSubTasks(SUBTASK_PROMPT)}
               disabled={isGenerating}
             >
               {isGenerating ? 'Generating...' : 'Generate Sub-tasks'}
@@ -104,34 +101,6 @@ export default function MainPane({ selectedTask, onNotesChange }: MainPaneProps)
           )}
         </Card>
       </div>
-
-      <Dialog open={showPromptDialog} onOpenChange={setShowPromptDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Generate Sub-tasks</DialogTitle>
-            <DialogDescription>
-              Customize how you want to break down this task
-            </DialogDescription>
-          </DialogHeader>
-          <Textarea
-            value={customPrompt}
-            onChange={(e) => setCustomPrompt(e.target.value)}
-            placeholder="Enter your instructions for breaking down the task..."
-            className="min-h-[100px]"
-          />
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowPromptDialog(false)}>
-              Cancel
-            </Button>
-            <Button 
-              onClick={() => handleGenerateSubTasks(customPrompt)}
-              disabled={isGenerating}
-            >
-              Generate
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   )
 } 
