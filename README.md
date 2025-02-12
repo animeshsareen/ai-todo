@@ -1,4 +1,4 @@
-# Next.js Dark Mode Template
+# Gemini-Powered To Do App
 
 A modern Next.js 14 to-do list app, using next-themes and Tailwind CSS.
 
@@ -14,6 +14,7 @@ A modern Next.js 14 to-do list app, using next-themes and Tailwind CSS.
 
 - [Next.js 14](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Gemini API](https://ai.google.dev/gemini-api/docs/api-key)
 - [next-themes](https://github.com/pacocoursey/next-themes)
 - [TypeScript](https://www.typescriptlang.org/)
 
